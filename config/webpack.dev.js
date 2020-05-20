@@ -18,41 +18,43 @@ module.exports = merge(common, {
     disableHostCheck: true,
     historyApiFallback: true,
     proxy: {
-      "/mockData": "http://0.0.0.0:3000"
-    }
+      "/mockData": "http://0.0.0.0:3000",
+    },
   },
 
   module: {
     rules: [
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify("production")
+      "process.env.NODE_ENV": JSON.stringify("production"),
     }),
     new BundleAnalyzerPlugin({ openAnalyzer: false }),
-    new CopyWebpackPlugin([
-      {
-        from: "env.config.js",
-        to: "",
-        transform(content) {
-          return content.toString().replace("$CURRENT_ENV", "development");
-        }
-      }
-    ])
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "env.config.js",
+          to: "",
+          transform(content) {
+            return content.toString().replace("$CURRENT_ENV", "development");
+          },
+        },
+      ],
+    }),
   ],
   output: {
     filename: "js/[name].js",
-    path: path.resolve(__dirname, "../dist")
-  }
+    path: path.resolve(__dirname, "../dist"),
+  },
 });
