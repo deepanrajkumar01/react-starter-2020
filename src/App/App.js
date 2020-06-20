@@ -1,11 +1,18 @@
-import React, { Component } from "react";
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Hello World</h1>
-      </div>
-    );
-  }
-}
+import React from "react";
+import Styled from "styled-components";
+
+const Title = Styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: red;
+`;
+
+const App = () => {
+  return (
+    <div>
+      <Tile>Hello world</Tile>
+    </div>
+  );
+};
+
 export default App;
