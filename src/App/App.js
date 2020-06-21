@@ -10,7 +10,7 @@ const Title = Styled.h1`
 const App = () => {
   return (
     <div>
-      <Tile>Hello world</Tile>
+      <Title>Hello world</Title>
     </div>
   );
 };
